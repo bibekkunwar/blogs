@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DemoService } from '../demo.service';
 import { BlogList } from '../data';
+import {
+  HttpHeaders,
+  HttpClient,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +22,17 @@ export class LoginComponent implements OnInit {
   initialized. */
   form!: FormGroup;
 
+  accessToken: any = '';
+  refreshToken: any = '';
   data: BlogList[] = [];
 
+  constructor(private _apiService: DemoService, private router: Router) {}
 
-  constructor(private _apiService: DemoService) { }
-
+ /* `ngOnInit()` is a lifecycle hook in Angular that is called after the component has been
+ initialized. In this code, it is used to call the `createForm()` method, which creates a new
+ instance of `FormGroup` and assigns it to the `form` property of the component. The `FormGroup` is
+ used to create a form with two form controls, `username` and `password`, which are initialized with
+ empty string values. This form is used to capture user input for the login process. */
   ngOnInit(): void {
     this.createForm();
   }
@@ -32,26 +44,20 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
   login() {
-    console.log(this.form.value);
-
-    /* This code is making a HTTP POST request to the API service's `login` endpoint with the form data
-    as the request body. The `subscribe` method is used to handle the response from the server. When
-    the response is received, it logs the response to the console and sets the token in the local
-    storage. It also has a commented out line that would display an alert message if the login was
-    successful. */
-    this._apiService.login(this.form.value).subscribe((res) => {
-      localStorage.setItem('acess', res.access);
-      localStorage.setItem('refresh', res.refresh);
-      localStorage.setItem('user_email', res.user_email);
+    this._apiService.login(this.form.value).subscribe({
+      next: (res) => {
+        localStorage.setItem('auth_token', JSON.stringify(res));
+        alert("Logged in successfully")
+        this.router.navigate(['/userBlog']);
+      },
+      error: (error: HttpErrorResponse) => {
+          if(error.status===401){
+            console.log(error.error.detail)
+            alert(error.error.detail)
+          }
+      },
     });
-  }
 
-  getList() {
-    this._apiService.getBlogList().subscribe((res: any) => {
-      this.data = res.results;
-      console.log(this.data);
-    });
   }
 }

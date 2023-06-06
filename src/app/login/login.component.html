@@ -1,26 +1,27 @@
 <div class="container">
-  <form [formGroup]="form">
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Username</label>
-      <input type="email" class="form-control" formControlName="username" id="exampleInputEmail1"
-        aria-describedby="emailHelp" />
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1" />
-    </div>
 
-    <button type="submit" (click)="login()" class="btn btn-primary">Submit</button>
-  </form>
+
+  <div class="login-box">
+    <h2>Login</h2>
+    <form [formGroup]="form">
+      <div class="user-box">
+        <input type="text" name="" formControlName="username">
+        <label>Username</label>
+      </div>
+      <div class="user-box">
+        <input type="password" formControlName="password" name="">
+        <label>Password</label>
+      </div>
+      <a type="submit" href="#" (click)="login()" >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Submit
+      </a>
+    </form>
+  </div>
+
 </div>
 
-<button class="btn btn-primary" (click)="getList()">Get List</button>
-<ul>
-  <li *ngFor="let item of data">
-    {{item.user_id}} <br>
-    {{item.blog_title}} <br>
-    {{item.blog_summary}} <br>
-    {{item.blog_content}} <br>
-    <img src="{{item.blog_header_image}}" alt="" width="100px" height="100px">
-  </li>
-</ul>
+

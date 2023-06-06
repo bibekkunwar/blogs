@@ -12,5 +12,4 @@ export interface BlogList {
   blog_summary: string,
   blog_content: string,
   blog_header_image: string
-
 }

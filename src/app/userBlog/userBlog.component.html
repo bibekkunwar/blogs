@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4 col-xl-4 mb-3" *ngFor="let item of allBlogLists">
+      <div class="card">
+        <div class="card__header">
+          <img src="{{item.blog_header_image}}" alt="card__image" class="card__image" width="600">
+        </div>
+        <div class="card__body">
+          <h4>{{item.blog_title}}</h4>
+          <p>{{item.blog_summary}}</p>
+        </div>
+        <!-- <div class="card__footer">
+          <div class="user">
+            <img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user__image">
+            <div class="user__info">
+              <h5>Jane Doe</h5>
+              <small>2h ago</small>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+
+</div>
