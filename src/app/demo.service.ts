@@ -27,12 +27,12 @@ export class DemoService {
    * `Authorization` property with a value of `'Bearer '` concatenated with the value of
    * `this.accessToken`.
    */
-  getHeaders() {
-    let headers = {
-      Authorization: 'Bearer ' + this.accessToken,
-    };
-    return headers;
-  }
+  // getHeaders() {
+  //   let headers = {
+  //     Authorization: 'Bearer ' + this.accessToken,
+  //   };
+  //   return headers;
+  // }
 
  /**
   * This function sends a POST request to the login endpoint with a username and password and returns a

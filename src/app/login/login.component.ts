@@ -44,6 +44,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
+ /**
+  * The function logs in a user by sending a request to an API service and storing the authentication
+  * token in local storage. If there is an error with a status code of 401, it displays an error
+  * message.
+  */
   login() {
     this._apiService.login(this.form.value).subscribe({
       next: (res) => {
