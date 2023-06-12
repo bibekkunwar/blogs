@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DemoService } from '../demo.service';
 import jwt_decode from 'jwt-decode';
+import { Location } from '@angular/common';
 
 interface DecodedType{
   user_id:number
@@ -15,7 +16,7 @@ export class UserBlogComponent implements OnInit {
   data: any;
   userId!:number
   allBlogLists:any[]=[]
-  constructor(private _apiService: DemoService) {}
+  constructor(private _apiService: DemoService, private location: Location) {}
 
   ngOnInit() {
   /* This code is retrieving the JWT token from the local storage of the browser, decoding it using the
@@ -33,7 +34,7 @@ fallback value. */
 type `DecodedType`, which is an interface defined earlier in the code. The `DecodedType` interface
 specifies that the decoded token should have a `user_id` property of type `number`. */
 
-    const decodedToken:DecodedType = jwt_decode(encodedToken.access);
+    const decodedToken:DecodedType = jwt_decode(encodedToken.refresh);
     this.userId=decodedToken.user_id
     this.getList()
   }
@@ -43,5 +44,9 @@ specifies that the decoded token should have a `user_id` property of type `numbe
       const filteredList=res.results.filter((item:any)=> item.user_id===this.userId)
       this.allBlogLists=filteredList
     });
+  }
+
+  back() {
+    this.location.back();
   }
 }

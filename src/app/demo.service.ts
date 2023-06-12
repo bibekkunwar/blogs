@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BlogList, LoginResponse } from './data';
+import { EmailValidator } from '@angular/forms';
 
 
 @Injectable({
@@ -44,7 +45,6 @@ export class DemoService {
   */
   login(data: { username: string; password: string }) {
     return this.http.post<LoginResponse>(`${this.apiUrl}/login/`, data);
-
   }
 
   getBlogList() {
@@ -52,8 +52,8 @@ export class DemoService {
     return this.http.get(`${this.apiUrl}/list/`);
   }
 
-
-
-
+  register(newUsers: {username: string; password : string; password2: string; email: EmailValidator; firstName: string; lastName: string}) {
+    return this.http.post(`${this.apiUrl}/register`, newUsers)
+  }
 }
 

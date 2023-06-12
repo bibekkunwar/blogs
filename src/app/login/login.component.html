@@ -1,4 +1,30 @@
-<div class="container">
+
+
+<form [formGroup]= "form">
+  <!-- Email input -->
+  <div class="form-outline container mt-4 mb-4">
+    <label class="form-label" for="form2Example1">Email address</label>
+    <input type="email" id="form2Example1" class="form-control" formControlName="username"/>
+  </div>
+
+  <!-- Password input -->
+  <div class="form-outline container mt-4  mb-4">
+    <label class="form-label" for="form2Example2">Password</label>
+    <input type="password" id="form2Example2" class="form-control" formControlName="password" />
+  </div>
+
+  <!-- Submit button -->
+  <div class="container logreg">
+    <a class ="login" type="button" href ="#" (click)="login()" class="btn btn-primary mb-4">LogIn</a>
+    <a class = "register" type="button" href="register" (click)="register()" class = "btn btn-primary mb-4 ml-3">Register</a>
+  </div>
+</form>
+
+
+
+
+
+<!-- <div class="container">
 
 
   <div class="login-box">
@@ -19,9 +45,13 @@
         <span></span>
         Submit
       </a>
+      <a type="Submit" href="#" (click)="login()">
+        <span></span>
+        <span></span>
+        Create an Account
+      </a>
     </form>
   </div>
 
-</div>
-
+</div> -->
 
