@@ -1,8 +1,7 @@
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BlogList, LoginResponse } from './data';
-import { EmailValidator } from '@angular/forms';
+import { BlogList, LoginResponse, RegisterResponse } from './data';
 
 
 @Injectable({
@@ -35,14 +34,14 @@ export class DemoService {
   //   return headers;
   // }
 
- /**
-  * This function sends a POST request to the login endpoint with a username and password and returns a
-  * LoginResponse.
-  * @param data - An object containing two properties:
-  * @returns The `login()` method is returning an HTTP POST request to the API endpoint for user login,
-  * with the provided `data` object containing the `username` and `password` properties. The response
-  * is expected to be of type `LoginResponse`.
-  */
+  /**
+   * This function sends a POST request to the login endpoint with a username and password and returns a
+   * LoginResponse.
+   * @param data - An object containing two properties:
+   * @returns The `login()` method is returning an HTTP POST request to the API endpoint for user login,
+   * with the provided `data` object containing the `username` and `password` properties. The response
+   * is expected to be of type `LoginResponse`.
+   */
   login(data: { username: string; password: string }) {
     return this.http.post<LoginResponse>(`${this.apiUrl}/login/`, data);
   }
@@ -52,8 +51,24 @@ export class DemoService {
     return this.http.get(`${this.apiUrl}/list/`);
   }
 
-  register(newUsers: {username: string; password : string; password2: string; email: EmailValidator; firstName: string; lastName: string}) {
-    return this.http.post(`${this.apiUrl}/register`, newUsers)
+  /* The `register()` method is a function that sends a POST request to the API endpoint for user
+  registration. It takes an object `newUsers` as a parameter, which contains the following
+  properties: `username`, `password`, `password2`, `email`, `first_name`, and `last_name`. These
+  properties are used to create a new user account on the server. The response is expected to be of
+  type `RegisterResponse`. */
+  register(newUsers: {
+    username: string;
+    password: string;
+    password2: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+  }) {
+    return this.http.post<RegisterResponse>(
+      `${this.apiUrl}/register/`,
+      newUsers
+    );
   }
-}
 
+
+}

@@ -51,6 +51,13 @@ export class LoginComponent implements OnInit {
  * displaying an error message if the request fails with a 401 status code.
  */
   login() {
+   /* This code is sending a login request to an API service using the `_apiService` instance, passing
+   in the form values as the request payload. The `subscribe()` method is used to handle the
+   response from the API service. If the response is successful, the authentication token is stored
+   in local storage using `localStorage.setItem()`, an alert message is displayed to the user, and
+   the user is navigated to the `/userBlog` page using the `this.router.navigate()` method. If the
+   response fails with a 401 status code, an error message is displayed to the user using the
+   `alert()` method. */
     this._apiService.login(this.form.value).subscribe({
       next: (res) => {
         localStorage.setItem('auth_token', JSON.stringify(res));

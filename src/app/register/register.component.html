@@ -1,7 +1,9 @@
-<p>register works!</p>
 
 <!-- [formGroup]="form" this line removed from inside the form -->
-<form [formGroup]="form" onscroll="register()">
+<form [formGroup]="form">
+
+  <button class="back" (click)="back()"> Back</button>
+
   <div class="form-outline container mt-4 mb-4">
     <label class="form-label" for="form2Example1">Username</label>
     <input type="text" id="form2Example1" class="form-control" formControlName= "username">
@@ -35,7 +37,7 @@
   </div>
 
   <div class="container">
-    <a class = "register" type="button" href="#" (click)="register()" class = "btn btn-primary mb-4">Register</a>
+    <button class = "register" type="submit"  (click)="register()" class = "btn btn-primary mb-4">Register</button>
   </div>
 </form>
 

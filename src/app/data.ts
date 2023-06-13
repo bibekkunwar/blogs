@@ -1,3 +1,4 @@
+import { EmailValidator } from "@angular/forms";
 
 export interface LoginResponse {
   access: string;
@@ -12,4 +13,13 @@ export interface BlogList {
   blog_summary: string,
   blog_content: string,
   blog_header_image: string
+}
+
+export interface RegisterResponse {
+  username: string;
+  password : string;
+  password2 : string;
+  email: string;
+  firstName: string;
+  lastName: string;
 }
